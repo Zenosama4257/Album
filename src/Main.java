@@ -111,31 +111,9 @@ public class Main {
 
 
 
-                    /*
-                    else {
-                        Pista.next();
-                        System.out.println(Pista.next());
-                    }
-                        lastInput="2";
-
-                     */
                     break;
                 case 2:
-                    /*
-                    if(lastInput.equals("1")){
-                        Pista.previous();
-                        System.out.println(Pista.previous());
 
-                    }
-                    else {
-                        System.out.println(Pista.previous());
-                    }
-
-                     */
-
-
-
-                    //if(doble == false) {
 
                         if (Pista.hasPrevious()) {
                             Pista.previous();
