@@ -150,15 +150,11 @@ public class Main {
 
 
 
-                            /*
-                        Pista = item.listIterator();
-                        cancion_actual=Pista.next();
 
-                       */
 
 
                     }
-                   // lastInput = "2";
+
                     break;
                 case 3:
                     repeat(cancion_actual);
