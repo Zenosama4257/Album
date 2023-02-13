@@ -11,6 +11,7 @@ public class Main {
         System.out.println("4 - Imprimir la lista de canciones en la playlist");
         System.out.println("5 - Volver a imprimir el menu");
         System.out.println("6. Eliminar la canción actual");
+        System.out.println("7.Masterización");
     }
 
     public static void printPlayList (LinkedList<Song> item){
@@ -89,6 +90,9 @@ public class Main {
 
 
         do{
+            try {
+
+
             System.out.println("Elige una opción: ");
             opcion = sc7.nextInt();
 
@@ -100,35 +104,28 @@ public class Main {
 
                 case 1:
 
-                        if (Pista.hasNext()) {
-                            cancion_actual = Pista.next();
-                        } else {
-                            Pista = item.listIterator();
-                            cancion_actual = Pista.next();
-                        }
-                        nextSong (cancion_actual);
-
-
+                    if (Pista.hasNext()) {
+                        cancion_actual = Pista.next();
+                    } else {
+                        Pista = item.listIterator();
+                        cancion_actual = Pista.next();
+                    }
+                    nextSong(cancion_actual);
 
 
                     break;
                 case 2:
 
 
+                    if (Pista.hasPrevious()) {
+                        Pista.previous();
                         if (Pista.hasPrevious()) {
                             Pista.previous();
-                            if(Pista.hasPrevious()) {
-                                Pista.previous();
-                            }
-                            cancion_actual=Pista.next();
-                            previousSong(cancion_actual);
-                        } else {
-                            System.out.println("No hay canción previa, ya estas en el principio de la fila.");
-
-
-
-
-
+                        }
+                        cancion_actual = Pista.next();
+                        previousSong(cancion_actual);
+                    } else {
+                        System.out.println("No hay canción previa, ya estas en el principio de la fila.");
 
 
                     }
@@ -147,24 +144,47 @@ public class Main {
 
                 case 6:
 
-                    if(item.isEmpty()){
+                    if (item.isEmpty()) {
                         System.out.println("No se pueden eliminar mas canciones, porque ya no hay más");
-                       break;
+                        break;
                     }
                     System.out.println("Se eliminó la canción: " + cancion_actual.getTitulo());
 
                     Pista.remove();
-                    if (Pista.hasNext()){
+                    if (Pista.hasNext()) {
                         cancion_actual = Pista.next();
-                    }
-                    if (Pista.hasPrevious()){
-                        cancion_actual= Pista.previous();
-                    }
-                    else{
-                        System.out.println("Ya no quedan más canciones en la Play List");
-                        cancion_actual=null;
-                    }
 
+                    }
+                    if (Pista.hasPrevious()) {
+                        cancion_actual = Pista.previous();
+
+                    } else {
+                        System.out.println("Ya no quedan más canciones en la Play List");
+                        cancion_actual = null;
+
+                    }
+                    break;
+                case 7:
+                    Collections.sort( item );
+                    printPlayList(item);
+                    break;
+
+
+                default:
+                    System.out.println("La opción marcada no se encuentra entre la ista de posibilidades, por favor introduce otra opción");
+                    break;
+
+
+
+            }
+            }catch (InputMismatchException e){
+                System.out.println("No está permitido poner letras");
+                LinkedList<Song>item2 ;
+                item2=item;
+                Play(item2);
+
+            }catch (IndexOutOfBoundsException j){
+                System.out.println("No puedes poner ese número");
 
             }
         }while(continuar);
@@ -204,7 +224,7 @@ public class Main {
         misAlbumes.get(0).addToPlayList("Beeesame" , Reproducciones1);
 
 
-        Collections.sort( Reproducciones1 );
+      //  Collections.sort( Reproducciones1 );
 
         Play(Reproducciones1);
 
